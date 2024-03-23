@@ -1,0 +1,178 @@
+body {
+  background: linear-gradient(#9fc8e3, #617ea3);
+}
+.container.main {
+  background-color: #cedfed;
+  font-family: "Roboto", sans-serif;
+  color: #424242;
+  font-weight: 830;
+  position: relative;
+  border:none;
+  box-shadow: #424242;
+  max-width: 870px;
+  margin: 10% auto;
+  border-radius: 15px ;
+  padding: 10px ;
+}
+.d-flex {
+  position: absolute;
+  top: 20px;
+  margin-top: 5px;
+  right: 25px;
+  max-width: 150 px;
+}
+
+.current-city {
+
+  margin-top: 10px;
+  font-weight: bold;
+  margin-left: 25px;
+}
+
+@media screen and (max-width: 534px) {
+  .current-city {
+   margin-top: 60px;
+  }
+}
+h1 {
+
+  font-weight: bold;
+  
+}
+
+h2 {
+  font-size: 25px;
+  font-style: italic;
+  margin-left: 25px;
+}
+button.btn {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.container.text-center {
+  padding: 15px 10px;
+}
+
+
+.units {
+  position: relative;
+  top: -20px;
+  font-size: 14px;
+  
+}
+a {
+  text-decoration: none;
+}
+
+.col-8 {
+  padding-left: 0%;
+  max-width: 100%;
+  font-weight: 500;
+  margin-top: 50px;
+  line-height: 30px;
+  font-size: 40px;
+}
+@media screen and (max-width: 530px) {
+  .col-8 {
+    margin-top: 35px;
+    font-size: 35px;
+  }
+}
+.fa-sun {
+  text-align: center;
+  padding: 35px 0px 5px 80px;
+  font-size: 100px;
+  color:  rgb(245, 248, 71);
+}
+@media screen and (max-width: 530px) {
+  .fa-sun  {
+    font-size: 75px;
+    padding: 35px 5px 5px 100px;
+  }
+}
+
+.col strong{
+  color: rgb(198, 20, 130);
+}
+.col-md-6{
+  font-weight: 500;
+}
+.title {
+  text-align: left;
+  padding: 30px 0px 15px 30px;
+  font-size: 20px;
+}
+.todayWeather {
+  display: flex;
+  justify-content:space-between;
+}
+@media screen and (max-width: 810px) {
+  .col.hourly {
+     width: 50%; 
+     float: left;
+  }
+ }
+.hourly-weather{
+  margin: 0% auto;
+ max-width: 810px;
+}
+@media screen and (max-width: 530px) {
+  .hourly-weather{
+   max-width: 510px;
+  } 
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 650;
+  text-align: center;
+}
+
+.card-text {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+.fa-bolt {
+  text-align: center;
+  font-size: 35px;
+  color: cadetblue;
+}
+@media screen and (max-width: 530px) {
+  .fa-bolt {
+    font-size: 20px;
+}
+}
+.fa-cloud {
+  text-align: center;
+  font-size: 30px;
+  color: rgb(129, 193, 234);
+  padding-top: 10px;
+}
+.border-right {
+  border-right: 2px solid rgb(9, 9, 9);
+}
+.col-2 {
+  margin-left: 0px;
+  font-size: 30px;
+  font-weight: 250px;
+}
+.table {
+  font-size: 16px;
+  font-weight: 500;
+  max-width: 95%;
+  margin: 0px 20px;
+}
+.row {
+  text-align: center;
+}
+footer {
+  font-family: "Cormorant", serif;
+  color: rgba(55, 55, 56, 0.6);
+  text-align: center;
+  border-top: 2px solid #626060;
+  padding-top: 30px;
+  font-weight: lighter;
+  font-size: 20px;
+}
