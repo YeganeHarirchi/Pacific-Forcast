@@ -5,11 +5,11 @@ body {
   background-color: #cedfed;
   font-family: "Roboto", sans-serif;
   color: #424242;
-  font-weight: 830;
+  font-weight: 700;
   position: relative;
   border:none;
   box-shadow: #424242;
-  max-width: 870px;
+  max-width: 700px;
   margin: 10% auto;
   border-radius: 15px ;
   padding: 10px ;
@@ -81,8 +81,8 @@ a {
 }
 .fa-sun {
   text-align: center;
-  padding: 35px 0px 5px 80px;
-  font-size: 100px;
+  padding: 35px 0px 5px 50px;
+  font-size: 90px;
   color:  rgb(245, 248, 71);
 }
 @media screen and (max-width: 530px) {
@@ -103,25 +103,35 @@ a {
   padding: 30px 0px 15px 30px;
   font-size: 20px;
 }
-.todayWeather {
+/*.todayWeather {
   display: flex;
   justify-content:space-between;
 }
-@media screen and (max-width: 810px) {
+@media screen and (max-width: 600px) {
   .col.hourly {
      width: 50%; 
      float: left;
   }
- }
+ }*/
 .hourly-weather{
   margin: 0% auto;
- max-width: 810px;
+ max-width: 500px;
 }
-@media screen and (max-width: 530px) {
-  .hourly-weather{
-   max-width: 510px;
-  } 
-}
+.todayWeather {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 10px; /* Adjust the gap between grid items as needed */
+ }
+ 
+ /* Media query for smaller screens */
+ @media (max-width: 768px) {
+  .todayWeather{
+     grid-template-columns: repeat(2, 1fr);
+     grid-template-rows: repeat(4, auto);
+  }
+ }
+
 
 .card-title {
   font-size: 18px;
@@ -134,6 +144,7 @@ a {
   font-weight: 500;
   text-align: center;
 }
+
 .fa-bolt {
   text-align: center;
   font-size: 35px;
@@ -168,11 +179,11 @@ a {
   text-align: center;
 }
 footer {
-  font-family: "Cormorant", serif;
+  
   color: rgba(55, 55, 56, 0.6);
   text-align: center;
   border-top: 2px solid #626060;
   padding-top: 30px;
-  font-weight: lighter;
-  font-size: 20px;
+  font-weight: 300;
+  font-size: 14px;
 }
