@@ -46,6 +46,7 @@ h2 {
   margin-left: 25px;
 }
 
+
 .col-8 .text-center{
   display: block;
   text-align: center;
@@ -73,7 +74,7 @@ h2 {
   line-height: 30px;
   font-size: 40px;
 }
-@media screen and (max-width: 768px) {
+ @media screen and (max-width: 768px) {
   .col-8 {
     margin-top: 35px;
     font-size: 35px;
@@ -84,7 +85,7 @@ h2 {
     margin-top: 25px;
     font-size: 30px;
   }
-}
+} 
 .fa-sun {
   text-align: center;
   padding: 35px 0px 5px 80px;
@@ -93,17 +94,22 @@ h2 {
 }
 @media screen and (max-width: 768px) {
   .fa-sun  {
-    padding: 35px 0px 5px 80px;
-    font-size: 75px;
+ 
+    font-size: 60px;
   }
 }
 @media screen and (max-width: 636px) {
   .fa-sun  {
-    padding: 30px 0px 5px 20px;
+    padding: 30px 0px 5px 70px;
     font-size: 50px;
   }
 }
-
+@media screen and (max-width: 575px) {
+  .fa-sun  {
+    padding: 30px 0px 5px 35px;
+    font-size: 50px;
+  }
+}
 .col strong{
   color: rgb(198, 20, 130);
 }
@@ -115,20 +121,6 @@ h2 {
   padding: 30px 0px 15px 30px;
   font-size: 20px;
 }
-/*.todayWeather {
-  display: flex;
-  justify-content:space-between;
-}
-@media screen and (max-width: 600px) {
-  .col.hourly {
-     width: 50%; 
-     float: left;
-  }
- }
-.hourly-weather{
-  margin: 0% auto;
- max-width: 500px;
-}*/
 .todayWeather {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
