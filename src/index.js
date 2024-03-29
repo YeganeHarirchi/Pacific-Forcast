@@ -24,12 +24,13 @@ todayDate.innerHTML = `${day} ${date} ${month}`;
 function searchCity(event) {
   event.preventDefault();
   let city = document.querySelector("#city-input");
-  let cityweather = document.querySelector("h1");
-  cityweather.innerHTML = `${city.value}`;
+ 
   let apiKey = "8da74ddd4473f588885d2a59e98e14d6";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=metric`;
 
   function currentWeather(response) {
+    let cityweather = document.querySelector("h1");
+    cityweather.innerHTML = `${city.value}`;
     let responseTemperature = Math.round(response.data.main.temp);
     let todayTemperature = document.querySelector("#now-temperature");
     todayTemperature.innerHTML = `${responseTemperature}`;
@@ -37,8 +38,16 @@ function searchCity(event) {
     let responseWeather = `${response.data.weather[0].main}`;
     let todayWeather = document.querySelector("#now-Weather");
     todayWeather.innerHTML = `${responseWeather}`;
+  
   }
-  axios.get(apiUrl).then(currentWeather);
+  axios.get(apiUrl).then(currentWeather).catch(error => {
+    if (error.response && error.response.status === 404) {
+      alert('City not found. Please enter a valid city name.');
+   
+    } else {
+      alert('An error occurred. Please try again.');
+    }
+  });
 }
 let searchBox = document.getElementById("magnifying-search");
 searchBox.addEventListener("click", searchCity);
@@ -50,6 +59,7 @@ function currentCity(event) {
     let apiKey = "8da74ddd4473f588885d2a59e98e14d6";
     let lon = position.coords.longitude;
     let lat = position.coords.latitude;
+    
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
     let cityweather = document.querySelector("h1");
     cityweather.innerHTML = `${position.sys.name}`;
@@ -78,6 +88,9 @@ function convertToFahrenheit() {
   fahrenheitTemprature = Math.round((nowTemperature.outerText * 9) / 5 + 32);
   nowTemperature.innerHTML = `${fahrenheitTemprature}`;
   temperatureUnit = "F";
+celsius.style.color = "gray";
+
+
 }
 
 function convertToCelsius() {
@@ -86,6 +99,9 @@ function convertToCelsius() {
   celsiusTemprature = Math.round((nowTemperature.outerText - 32) * 0.55);
   nowTemperature.innerHTML = `${celsiusTemprature}`;
   temperatureUnit = "C";
+  fahrenheit.style.color = "gray";
+celsius.style.color= "rgb(13,110,252)";
+
 }
 let fahrenheit = document.querySelector("#fahrenheit-link");
 fahrenheit.addEventListener("click", convertToFahrenheit);
