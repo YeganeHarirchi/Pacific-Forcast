@@ -21,44 +21,39 @@ let date = now.getDate();
 let temperatureUnit = "C";
 todayDate.innerHTML = `${day} ${date} ${month}`;
 
-function searchCity(city) {
- 
-  let apiKey = "8da74ddd4473f588885d2a59e98e14d6";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(currentWeather).catch(error => {
-    if (error.response && error.response.status === 404) {
-      alert('City not found. Please enter a valid city name.');
-    }
-     //else {alert('An error occurred. Please try again.'); }
-  });
-}
-  function currentWeather(response) {
-    let cityweather = document.querySelector("h1");
-    cityweather.innerHTML = `${response.data.name}`;
+
+  function refreshWeather(response) {
+    let cityElement = document.querySelector("h1");
+    cityElement.innerHTML = `${response.data.city}`;
     //
-    let responseTemperature = Math.round(response.data.main.temp);
-    let todayTemperature = document.querySelector("#now-temperature");
-    todayTemperature.innerHTML = `${responseTemperature}`;
+    let responseTemperature = Math.round(response.data.daily[0].temperature.day);
+    let temperatureElement = document.querySelector("#temperature-element");
+    temperatureElement.innerHTML = `${responseTemperature}`;
     //
-    let todayWeather = document.querySelector("#now-Weather");
-    todayWeather.innerHTML = `${response.data.weather[0].main}`;
+    let descriptionElement = document.querySelector("#description-element");
+    descriptionElement.innerHTML = `${response.data.daily[0].condition.description}`;
     //
-    let responseHighTemperature = Math.round(response.data.main.temp_max);
+    let responseHighTemperature = Math.round(response.data.daily[0].temperature.maximum);
     let highTemperature = document.querySelector("#high-Temp");
     highTemperature.innerHTML = `${responseHighTemperature}°C `;
     //
-    let responseLowTemperature = Math.round(response.data.main.temp_min);
+    let responseLowTemperature = Math.round(response.data.daily[0].temperature.minimum);
     let lowTemperature = document.querySelector("#low-temp");
     lowTemperature.innerHTML = `${responseLowTemperature}°C `;
     //
-    let responseWindSpeed = Math.round(response.data.wind.speed);
+    let responseWindSpeed = Math.round(response.data.daily[0].wind.speed);
     let windSpeed = document.querySelector("#wind-speed");
-    windSpeed.innerHTML = `${responseWindSpeed} mph`;
+    windSpeed.innerHTML = `${responseWindSpeed} km/h`;
   //
-  let responseHumidity = Math.round(response.data.main.humidity);
+  let responseHumidity = Math.round(response.data.daily[0].temperature.humidity);
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = `${responseHumidity}% `;
   //
+  let iconElement = document.querySelector("#icon");
+  iconElement.innerHTML = `<img src="${response.data.daily[0].condition.icon_url}" class="weather-app-icon" />`;
+  }
+
+  function sunriseSunset(response){ 
   let responseSunrise = new Date(response.data.sys.sunrise * 1000);
   let responseSunset = new Date(response.data.sys.sunset * 1000);
  
@@ -78,12 +73,27 @@ sunrise.innerHTML = `${sunriseHours}:${sunriseMinutes}`;
 let sunset = document.querySelector("#sunset");
 sunset.innerHTML = `${sunsetHours}:${sunsetMinutes}`;
   }
-  
+function solarDay(city){
+  let apiKey = "8da74ddd4473f588885d2a59e98e14d6";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(sunriseSunset);
+}
+  function searchCity(city) {
+    let apiKey = "a70319f6ffacc5c8aof4f0964f4bt0fc";
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
+    axios.get(apiUrl).then(refreshWeather).catch(error => {
+      if (error.response && error.response.status === 404) {
+        alert('City not found. Please enter a valid city name.');
+      }
+       //else {alert('An error occurred. Please try again.'); }
+    });
+  }
 function handleSearchSubmit(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#city-input");
-
   searchCity(searchInput.value);
+  solarDay(searchInput.value);
 }
 
 
@@ -91,6 +101,7 @@ let searchBox = document.getElementById("magnifying-search");
 searchBox.addEventListener("click", handleSearchSubmit);
 
 searchCity("Mashhad");
+solarDay("Mashhad");
 
 function currentCity(event) {
   event.preventDefault();
@@ -104,7 +115,7 @@ function currentCity(event) {
     let cityweather = document.querySelector("h1");
     cityweather.innerHTML = `${position.sys.name}`;
 
-    axios.get(apiUrl).then(currentWeather);
+    axios.get(apiUrl).then(refreshWeather);
   }
 
   navigator.geolocation.getCurrentPosition(longLat);

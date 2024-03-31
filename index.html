@@ -55,16 +55,16 @@
         <div class="col-sm-6 border-right">
           <div class="row weather-detail">
             <div class="col-4 p-0 m-0">
-              <i class="fa-solid fa-sun"></i>
+              <span id="icon"></span>
             </div>
             <div class="col-8 text-center">
-              <span id="now-temperature"></span>
+              <span id="temperature-element"></span>
               <span class="units">
                 <a href="#" id="celsius-link">°C</a> |
                 <a href="#" id="fahrenheit-link">°F</a>
               </span>
               <br />
-              <span class="now-Weather" id="now-Weather"></span>
+              <span class="description-element" id="description-element"></span>
             </div>
           </div>
         </div>
@@ -200,7 +200,7 @@
         <table class="table table-sm">
           <tbody>
             <tr>
-              <td ></td>
+              <td now-temperature></td>
 
               <td scope="row daily-detail">
                 Tue <br />

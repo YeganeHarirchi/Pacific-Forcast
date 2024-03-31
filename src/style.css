@@ -13,38 +13,60 @@ body {
   border-radius: 15px ; 
   padding: 10px ;
 }
-
-.d-flex {
+.d-flex 
+ {
   position: absolute;
   top: 20px;
   margin-top: 5px;
+  top: 25px;
   right: 25px;
   max-width: 150 px;
+}
+@media screen and (max-width: 768px) {
+  .d-flex {
+    right: 5px;
+  margin-left:30px;
+  }
 }
 button.btn {
   font-weight: bold;
   margin-right: 5px;
 }
+@media screen and (max-width: 768px) {
+  .current-city-details {
+ max-height: 30px;
+  }
+}
 .current-city {
-
-  margin-top: 10px;
+  margin-top: 20px;
   font-weight: bold;
   margin-left: 25px;
 }
 @media screen and (max-width: 768px) {
   .current-city {
-   margin-top: 60px;
+   margin-top: 70px;
+   margin-left: 15px;
+   margin-bottom: 0px;
   }
 }
 h1 {
   font-weight: bold;
 }
-
 h2 {
   font-size: 25px;
   font-style: italic;
   margin-left: 25px;
 }
+@media screen and (max-width: 768px) {
+ h2 {
+   margin-left: 15px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .description-element {
+    font-size: 25px;
+   }
+ }
 
 .weather-detail{
   margin-top: 25px;
@@ -62,11 +84,7 @@ h2 {
     align-items:center;
    }
 }
-/*@media screen and (max-width: 573px) {
-  .weather-detail{
 
-   }
-}*/
 .col-4 {  /* sun icon */
   align-items: center;
   display: flex;
@@ -98,19 +116,7 @@ a {
 @media (max-width: 768px) {
   .col-8{font-size: 35px;}
 }
-.fa-sun {
-  align-items: center;
-  font-size: 90px;
-  color:  rgb(245, 248, 71);
-}
 
-@media screen and (max-width: 768px) {
-  .fa-sun{font-size: 70px;}
-}
-
-/*@media screen and (max-width: 575px) {
-  .fa-sun{margin-left: 80px;}
-}*/
 .container.text-center { /*today details like high and low teprature*/
   padding: 15px 10px;
 }
