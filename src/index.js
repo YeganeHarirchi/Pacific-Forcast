@@ -21,36 +21,76 @@ let date = now.getDate();
 let temperatureUnit = "C";
 todayDate.innerHTML = `${day} ${date} ${month}`;
 
-function searchCity(event) {
-  event.preventDefault();
-  let city = document.querySelector("#city-input");
+function searchCity(city) {
  
   let apiKey = "8da74ddd4473f588885d2a59e98e14d6";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=metric`;
-
-  function currentWeather(response) {
-    let cityweather = document.querySelector("h1");
-    cityweather.innerHTML = `${city.value}`;
-    let responseTemperature = Math.round(response.data.main.temp);
-    let todayTemperature = document.querySelector("#now-temperature");
-    todayTemperature.innerHTML = `${responseTemperature}`;
-
-    let responseWeather = `${response.data.weather[0].main}`;
-    let todayWeather = document.querySelector("#now-Weather");
-    todayWeather.innerHTML = `${responseWeather}`;
-  
-  }
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(currentWeather).catch(error => {
     if (error.response && error.response.status === 404) {
       alert('City not found. Please enter a valid city name.');
-   
-    } else {
-      alert('An error occurred. Please try again.');
     }
+     //else {alert('An error occurred. Please try again.'); }
   });
 }
+  function currentWeather(response) {
+    let cityweather = document.querySelector("h1");
+    cityweather.innerHTML = `${response.data.name}`;
+    //
+    let responseTemperature = Math.round(response.data.main.temp);
+    let todayTemperature = document.querySelector("#now-temperature");
+    todayTemperature.innerHTML = `${responseTemperature}`;
+    //
+    let todayWeather = document.querySelector("#now-Weather");
+    todayWeather.innerHTML = `${response.data.weather[0].main}`;
+    //
+    let responseHighTemperature = Math.round(response.data.main.temp_max);
+    let highTemperature = document.querySelector("#high-Temp");
+    highTemperature.innerHTML = `${responseHighTemperature}°C `;
+    //
+    let responseLowTemperature = Math.round(response.data.main.temp_min);
+    let lowTemperature = document.querySelector("#low-temp");
+    lowTemperature.innerHTML = `${responseLowTemperature}°C `;
+    //
+    let responseWindSpeed = Math.round(response.data.wind.speed);
+    let windSpeed = document.querySelector("#wind-speed");
+    windSpeed.innerHTML = `${responseWindSpeed} mph`;
+  //
+  let responseHumidity = Math.round(response.data.main.humidity);
+  let humidity = document.querySelector("#humidity");
+  humidity.innerHTML = `${responseHumidity}% `;
+  //
+  let responseSunrise = new Date(response.data.sys.sunrise * 1000);
+  let responseSunset = new Date(response.data.sys.sunset * 1000);
+ 
+ sunriseHours = responseSunrise.getHours();
+ sunriseMinutes = responseSunrise.getMinutes();
+ sunsetHours = responseSunset.getHours();
+ sunsetMinutes = responseSunset.getMinutes();
+
+// Ensure hours and minutes are always two digits
+sunriseHours = sunriseHours < 10 ? '0' + sunriseHours : sunriseHours;
+sunriseMinutes = sunriseMinutes < 10 ? '0' + sunriseMinutes : sunriseMinutes;
+sunsetHours = sunsetHours < 10 ? '0' + sunsetHours : sunsetHours;
+sunsetMinutes = sunsetMinutes < 10 ? '0' + sunsetMinutes : sunsetMinutes;
+
+let sunrise = document.querySelector("#sunrise");
+sunrise.innerHTML = `${sunriseHours}:${sunriseMinutes}`;
+let sunset = document.querySelector("#sunset");
+sunset.innerHTML = `${sunsetHours}:${sunsetMinutes}`;
+  }
+  
+function handleSearchSubmit(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#city-input");
+
+  searchCity(searchInput.value);
+}
+
+
 let searchBox = document.getElementById("magnifying-search");
-searchBox.addEventListener("click", searchCity);
+searchBox.addEventListener("click", handleSearchSubmit);
+
+searchCity("Mashhad");
 
 function currentCity(event) {
   event.preventDefault();
