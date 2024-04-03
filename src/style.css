@@ -107,11 +107,12 @@ a {
 }
 
 .col-8 {
+  text-align: left !important;
   margin-top: 10px;
   font-weight: 500;
   line-height: 30px;
-  font-size: 40px;
-  width: fit-content;
+  font-size: 30px;
+
 }
 @media (max-width: 768px) {
   .col-8{font-size: 35px;}

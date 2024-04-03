@@ -82,6 +82,7 @@ function solarDay(city){
   function searchCity(city) {
     let apiKey = "a70319f6ffacc5c8aof4f0964f4bt0fc";
     let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
+
     axios.get(apiUrl).then(refreshWeather).catch(error => {
       if (error.response && error.response.status === 404) {
         alert('City not found. Please enter a valid city name.');
@@ -135,24 +136,31 @@ currentBox.addEventListener("click", currentCity);
 
 function convertToFahrenheit() {
   if (temperatureUnit !== "C") return;
-  let nowTemperature = document.querySelector("#now-temperature");
+  let nowTemperature = document.querySelector("#temperature-element");
   fahrenheitTemprature = Math.round((nowTemperature.outerText * 9) / 5 + 32);
   nowTemperature.innerHTML = `${fahrenheitTemprature}`;
   temperatureUnit = "F";
 celsius.style.color = "gray";
-
+// Add event listeners for mouseover and mouseout
+celsius.addEventListener('mouseover', function() {
+  this.style.color = 'blue'; // Change color to blue on mouseover
+});
 
 }
 
 function convertToCelsius() {
   if (temperatureUnit !== "F") return;
-  let nowTemperature = document.querySelector("#now-temperature");
+  let nowTemperature = document.querySelector("#temperature-element");
   celsiusTemprature = Math.round((nowTemperature.outerText - 32) * 0.55);
   nowTemperature.innerHTML = `${celsiusTemprature}`;
   temperatureUnit = "C";
   fahrenheit.style.color = "gray";
-celsius.style.color= "rgb(13,110,252)";
 
+celsius.style.color= "rgb(13,110,252)";
+// Add event listeners for mouseover and mouseout
+fahrenheit.addEventListener('mouseover', function() {
+  this.style.color = 'blue'; // Change color to blue on mouseover
+});
 }
 let fahrenheit = document.querySelector("#fahrenheit-link");
 fahrenheit.addEventListener("click", convertToFahrenheit);
