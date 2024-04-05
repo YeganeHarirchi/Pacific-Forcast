@@ -222,6 +222,7 @@ a {
 }
   }
 
+
 .daily-detail{
   text-align: center !important;
   color: #626060;
@@ -243,21 +244,42 @@ a {
   .daily-detail{
     text-align: center !important;
     padding-top: 15px;
+
   }
+  @media  screen and (max-width: 386px) {
+    .daily-detail{
+      max-width: 70%;
+  }
+    }
+    @media  screen and (max-width: 280px) {
+      .daily-detail{
+        
+        max-width: 100%;
+    }
+      }
 .date-detail{
   text-align: center;
   padding-top: 12px !important;
   font-size: 20px;
 
 }
+
 @media screen and (max-width: 530px) {
   .date-detail {
     font-size: 16px;
+   
 }
 }
 small{
   color: #424242;
 }
+
+@media  screen and (max-width: 386px) {
+  .forecast-detail-table{
+    display: flex;
+    justify-content: space-around;
+  }
+  }
 footer {
   
   color: rgba(55, 55, 56, 0.6);
