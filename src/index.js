@@ -186,7 +186,7 @@ let forecastBody = document.querySelector("#forecastBody");
 forecastBody.innerHTML=forecastHtml;
 }
 
-function displayHourlyWeather(){
+/*function displayHourlyWeather(){
 
   let hours=["3am","6am","9am","12pm","3pm","6pm","9pm","12am"];
   let hourlyWeatherHtml= "";
@@ -209,9 +209,8 @@ function displayHourlyWeather(){
   let hourlyWeather = document.querySelector("#hourlyWeatherBody");
   hourlyWeather.innerHTML=hourlyWeatherHtml;
   }
-
 displayHourlyWeather();
-
+*/
 function currentCity(event) {
   event.preventDefault();
 
