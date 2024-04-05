@@ -128,6 +128,7 @@ a {
 
 .col strong{
   color: rgb(198, 20, 130);
+  font-size: 14px;
 }
 
 .title {
@@ -223,6 +224,39 @@ a {
 
 .daily-detail{
   text-align: center !important;
+  color: #626060;
+}
+
+.weather-forecast-icon{
+  display: block;
+  margin: auto;
+  width: 70px;
+}
+
+@media  screen and (max-width: 575px) {
+  .weather-forecast-icon {
+   width: 50px;
+   padding-top: 10px;
+}
+  }
+ 
+  .daily-detail{
+    text-align: center !important;
+    padding-top: 15px;
+  }
+.date-detail{
+  text-align: center;
+  padding-top: 12px !important;
+  font-size: 20px;
+
+}
+@media screen and (max-width: 530px) {
+  .date-detail {
+    font-size: 16px;
+}
+}
+small{
+  color: #424242;
 }
 footer {
   

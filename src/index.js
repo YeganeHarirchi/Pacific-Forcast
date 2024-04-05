@@ -51,6 +51,9 @@ todayDate.innerHTML = `${day} ${date} ${month}`;
   //
   let iconElement = document.querySelector("#icon");
   iconElement.innerHTML = `<img src="${response.data.daily[0].condition.icon_url}" class="weather-app-icon" />`;
+
+  getForecast(response.data.city);
+
   }
 
   function sunriseSunset(response){ 
@@ -72,7 +75,9 @@ let sunrise = document.querySelector("#sunrise");
 sunrise.innerHTML = `${sunriseHours}:${sunriseMinutes}`;
 let sunset = document.querySelector("#sunset");
 sunset.innerHTML = `${sunsetHours}:${sunsetMinutes}`;
-  }
+ 
+
+}
 function solarDay(city){
   let apiKey = "8da74ddd4473f588885d2a59e98e14d6";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -105,43 +110,77 @@ searchCity("Mashhad");
 solarDay("Mashhad");
 
 
-function displayForcast(){
-let days=["Tue","Wed","thu","Fri","Sat"];
+function getForecast(city){
+  let apiKey = "a70319f6ffacc5c8aof4f0964f4bt0fc";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
+axios.get(apiUrl).then(displayForcast);
+}
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  console.log(date);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[date.getDay()];
+}
+function formatMonth(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  return `${months[date.getMonth()]} ${date.getDate()}`;
+}
+function displayForcast(response){
 let forecastHtml= "";
-days.forEach(function(day){
+response.data.daily.forEach(function(day, index){
+
+ if(index > 0 && index < 6){
+ 
   forecastHtml= forecastHtml +
- `
- <tr>
-  <td now-temperature></td>
-  
-  <td scope="row daily-detail">
-    ${day} <br />
-    18/4
+ `<tr >
+<td class="date-detail"> 
+  ${formatDay(day.time)}
+     <br />
+   <small>${formatMonth(day.time)}</small>
+   
   </td>
-  <td><i class="fa-solid fa-cloud"></i></td>
+  <td><img src="${day.condition.icon_url}" class="weather-forecast-icon" /></td>
   
-  <td>
+  <td class="forecast-detail-table">
     <div class="row daily-detail">
-      <div class="col">
-        23°C <br />
+      <div class="col"><strong>
+       ${Math.round(day.temperature.maximum)}°C </strong> <br />
         High
       </div>
+      <div class="col"><strong>
+       ${Math.round(day.temperature.minimum)}°C </strong> <br />
+        Low
+      </div>
       <div class="col">
-        7mph <br />
+      <strong>
+      ${Math.round(day.wind.speed)}km/h </strong> <br />
         Wind
       </div>
+      
       <div class="col">
-        5:27 <br />
-        Sunrise
-      </div>
-      <div class="col">
-        0% <br />
-        Rain
+      <strong>
+      ${day.temperature.humidity}% </strong> <br />
+        Humidity
       </div>
     </div>
   </td>
 </tr>
   `;
+ }
 });
 let forecastBody = document.querySelector("#forecastBody");
 forecastBody.innerHTML=forecastHtml;
@@ -170,7 +209,7 @@ function displayHourlyWeather(){
   let hourlyWeather = document.querySelector("#hourlyWeatherBody");
   hourlyWeather.innerHTML=hourlyWeatherHtml;
   }
-displayForcast();
+
 displayHourlyWeather();
 
 function currentCity(event) {
