@@ -54,11 +54,13 @@ h1 {
 }
 h2 {
   font-size: 25px;
+  color:#6C757D;
   font-style: italic;
   margin-left: 25px;
 }
 @media screen and (max-width: 768px) {
  h2 {
+  font-size: 20px;
    margin-left: 15px;
   }
 }
@@ -132,7 +134,7 @@ a {
   margin-top: 30px;
   font-size: 20px;
 }
-.todayWeather {
+.row .hourlyWeather {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(1, auto);
@@ -143,7 +145,7 @@ a {
  
 
  @media (max-width: 768px) {
-  .todayWeather{
+  .row .hourlyWeather {
      grid-template-columns: repeat(4, 1fr);
      grid-template-rows: repeat(2, auto);
     row-gap: 10px;

@@ -104,6 +104,75 @@ searchBox.addEventListener("click", handleSearchSubmit);
 searchCity("Mashhad");
 solarDay("Mashhad");
 
+
+function displayForcast(){
+let days=["Tue","Wed","thu","Fri","Sat"];
+let forecastHtml= "";
+days.forEach(function(day){
+  forecastHtml= forecastHtml +
+ `
+ <tr>
+  <td now-temperature></td>
+  
+  <td scope="row daily-detail">
+    ${day} <br />
+    18/4
+  </td>
+  <td><i class="fa-solid fa-cloud"></i></td>
+  
+  <td>
+    <div class="row daily-detail">
+      <div class="col">
+        23°C <br />
+        High
+      </div>
+      <div class="col">
+        7mph <br />
+        Wind
+      </div>
+      <div class="col">
+        5:27 <br />
+        Sunrise
+      </div>
+      <div class="col">
+        0% <br />
+        Rain
+      </div>
+    </div>
+  </td>
+</tr>
+  `;
+});
+let forecastBody = document.querySelector("#forecastBody");
+forecastBody.innerHTML=forecastHtml;
+}
+
+function displayHourlyWeather(){
+
+  let hours=["3am","6am","9am","12pm","3pm","6pm","9pm","12am"];
+  let hourlyWeatherHtml= "";
+  hours.forEach(function(hour){
+    hourlyWeatherHtml= hourlyWeatherHtml +
+   `
+   <div class="col hourly">
+            <div class="card hourlyweather">
+              <div class="card-body">
+                <h5 class="card-title">${hour}</h5>
+                <p class="card-text">
+                  <i class="fa-solid fa-bolt"></i><br />14°C
+                </p>
+              </div>
+            </div>
+          </div>
+
+    `;
+  });
+  let hourlyWeather = document.querySelector("#hourlyWeatherBody");
+  hourlyWeather.innerHTML=hourlyWeatherHtml;
+  }
+displayForcast();
+displayHourlyWeather();
+
 function currentCity(event) {
   event.preventDefault();
 
